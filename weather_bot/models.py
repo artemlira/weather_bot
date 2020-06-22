@@ -1,3 +1,21 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 
-# Create your models here.
+
+class ViberUser(models.Model):
+    objects = None
+    viber_id = models.CharField(max_length=13)
+    name = models.CharField(max_length=75, null=True, blank=True)
+    avatar = models.URLField(null=True, blank=True)
+    country = models.CharField(max_length=2, null=True, blank=True)
+    language = models.CharField(max_length=2, null=True, blank=True)
+    primary_device_os = models.CharField(max_length=48, null=True, blank=True)
+    api_version = models.PositiveSmallIntegerField(null=True, blank=True)
+    viber_version = models.CharField(max_length=24, null=True, blank=True)
+    device_type = models.CharField(max_length=48, null=True, blank=True)
+    user = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+    is_blocket = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.name}: {self.viber_id}'

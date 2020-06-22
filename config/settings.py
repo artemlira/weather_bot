@@ -123,3 +123,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 VIBER_TOKEN = '4b9ebc70ec27dedd-a6a43aadb70e8c35-7b1f3a6de14b5d0b'
+
+AUTH_USER_MODEL = 'users.User'
